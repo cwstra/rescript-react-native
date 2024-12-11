@@ -1,16 +1,3 @@
-type t
-
-external array: array<t> => t = "%identity"
-external arrayOption: array<option<t>> => t = "%identity"
-
-// Escape hatch, in case something is added into RN but unsupported,
-// Useful if you play with fancy platforms
-// Use with caution
-@val
-external unsafeAddStyle: (@as(json`{}`) _, t, Js.t<'a>) => t = "Object.assign"
-
-external unsafeStyle: Js.t<'a> => t = "%identity"
-
 type size = string
 
 external dp: float => size = "%identity"
@@ -62,119 +49,146 @@ type transformOriginY =
 
 type transformOrigin = (transformOriginX, transformOriginY, float)
 
-type resizeMode = [#cover | #contain | #stretch | #repeat | #center]
+type resizeMode =
+  | @as("cover") Cover
+  | @as("contain") Contain
+  | @as("stretch") Stretch
+  | @as("repeat") Repeat
+  | @as("center") Center
 
-type fontStyle = [#normal | #italic]
+type fontStyle =
+  | @as("normal") Normal
+  | @as("italic") Italic
 
-type fontWeight = [#normal | #bold | #100 | #200 | #300 | #400 | #500 | #600 | #700 | #800 | #900]
+type fontWeight =
+  | @as("normal") Normal
+  | @as("bold") Bold
+  | @as(100) W100
+  | @as(200) W200
+  | @as(300) W300
+  | @as(400) W400
+  | @as(500) W500
+  | @as(600) W600
+  | @as(700) W700
+  | @as(800) W800
+  | @as(900) W900
 
-// @todo in 0.71.0
-// Apparently there are more `fontVariant` options IOS specific
-// (`stylistic-one` ... `stylistic-twenty`) but they are not documented.
-// Found in the 0.71.0 changelog:
-// https://github.com/facebook/react-native/blob/main/CHANGELOG.md#ios-specific-4
-// and found in code:
-// https://github.com/facebook/react-native/blob/4e117cb09d208ca02f513d2101592d0ac10d4739/Libraries/StyleSheet/StyleSheetTypes.js#L784
-type fontVariant = [
-  | #"small-caps"
-  | #"oldstyle-nums"
-  | #"lining-nums"
-  | #"tabular-nums"
-  | #"proportional-nums"
-]
+type fontVariant =
+  | @as("small-caps") SmallCaps
+  | @as("oldstyle-nums") OldStyleNums
+  | @as("lining-nums") LiningNums
+  | @as("tabular-nums") TabularNums
+  | @as("proportional-nums") ProportionalNums
+  | @as("stylistic-one") StylisticOne
+  | @as("stylistic-two") StylisticTwo
+  | @as("stylistic-three") StylisticThree
+  | @as("stylistic-four") StylisticFour
+  | @as("stylistic-five") StylisticFive
+  | @as("stylistic-six") StylisticSix
+  | @as("stylistic-seven") StylisticSeven
+  | @as("stylistic-eight") StylisticEight
+  | @as("stylistic-nine") StylisticNine
+  | @as("stylistic-ten") StylisticTen
+  | @as("stylistic-eleven") StylisticEleven
+  | @as("stylistic-twelve") StylisticTwelve
+  | @as("stylistic-thirteen") StylisticThirteen
+  | @as("stylistic-fourteen") StylisticFourteen
+  | @as("stylistic-fifteen") StylisticFifteen
+  | @as("stylistic-sixteen") StylisticSixteen
+  | @as("stylistic-seventeen") StylisticSeventeen
+  | @as("stylistic-eighteen") StylisticEighteen
+  | @as("stylistic-nineteen") StylisticNineteen
+  | @as("stylistic-twenty") StylisticTwenty
 
-type textAlign = [#auto | #left | #right | #center | #justify]
+type textAlign =
+  | @as("auto") Auto
+  | @as("left") Left
+  | @as("right") Right
+  | @as("center") Center
+  | @as("justify") Justify
 
-type textAlignVertical = [#auto | #top | #bottom | #center]
+type textAlignVertical =
+  | @as("auto") Auto
+  | @as("top") Top
+  | @as("bottom") Bottom
+  | @as("center") Center
 
-type textDecorationLine = [
-  | #none
-  | #underline
-  | #"line-through"
-  | #"underline line-through"
-]
+type textDecorationLine =
+  | @as("none") None
+  | @as("underline") Underline
+  | @as("line-through") LineThrough
+  | @as("underline line-through") UnderlineLineThrough
 
-type textDecorationStyle = [#solid | #double | #dotted | #dashed]
+type textDecorationStyle =
+  | @as("solid") Solid | @as("double") Double | @as("dotted") Dotted | @as("dashed") Dashed
 
-type textTransform = [#none | #uppercase | #lowercase | #capitalize]
+type textTransform =
+  | @as("none") None
+  | @as("uppercase") Uppercase
+  | @as("lowercase") Lowercase
+  | @as("capitalize") Capitalize
 
-type writingDirection = [#auto | #ltr | #rtl]
+type writingDirection = | @as("auto") Auto | @as("ltr") Ltr | @as("rtl") Rtl
 
-type backfaceVisibility = [#visible | #hidden]
+type backfaceVisibility = | @as("visible") Visible | @as("hidden") Hidden
 
-type borderStyle = [#solid | #dotted | #dashed]
+type borderStyle = | @as("solid") Solid | @as("dotted") Dotted | @as("dashed") Dashed
 
-type display = [#none | #flex]
+type display = | @as("none") None | @as("flex") Flex
 
-type overflow = [#visible | #hidden | #scroll]
+type overflow = | @as("visible") Visible | @as("hidden") Hidden | @as("scroll") Scroll
 
-type flexWrap = [#wrap | #nowrap]
+type flexWrap = | @as("wrap") Wrap | @as("nowrap") NoWrap
 
-type position = [#absolute | #relative | #static]
+type position = | @as("absolute") Absolute | @as("relative") Relative | @as("static") Static
 
-type alignContent = [
-  | #"flex-start"
-  | #"flex-end"
-  | #center
-  | #stretch
-  | #"space-around"
-  | #"space-between"
-  | #"space-evenly"
-]
+type alignContent =
+  | @as("flex-start") FlexStart
+  | @as("flex-end") FlexEnd
+  | @as("center") Center
+  | @as("stretch") Stretch
+  | @as("space-around") SpaceAround
+  | @as("space-between") SpaceBetween
+  | @as("space-evenly") SpaceEvenly
 
-type alignItems = [
-  | #"flex-start"
-  | #"flex-end"
-  | #center
-  | #stretch
-  | #baseline
-]
+type alignItems =
+  | @as("flex-start") FlexStart
+  | @as("flex-end") FlexEnd
+  | @as("center") Center
+  | @as("stretch") Stretch
+  | @as("baseline") Baseline
 
-type alignSelf = [
-  | #auto
-  | #"flex-start"
-  | #"flex-end"
-  | #center
-  | #stretch
-  | #baseline
-]
+type alignSelf =
+  | @as("auto") Auto
+  | @as("flex-start") FlexStart
+  | @as("flex-end") FlexEnd
+  | @as("center") Center
+  | @as("stretch") Stretch
+  | @as("baseline") Baseline
 
-type direction = [#inherit | #ltr | #rtl]
+type direction = | @as("inherit") Inherit | @as("ltr") Ltr | @as("rtl") Rtl
 
-type flexDirection = [
-  | #row
-  | #"row-reverse"
-  | #column
-  | #"column-reverse"
-]
+type flexDirection =
+  | @as("row") Row
+  | @as("row-reverse") RowReverse
+  | @as("column") Column
+  | @as("column-reverse") ColumnReverse
 
-type justifyContent = [
-  | #"flex-start"
-  | #"flex-end"
-  | #center
-  | #"space-around"
-  | #"space-between"
-  | #"space-evenly"
-]
+type justifyContent =
+  | @as("flex-start") FlexStart
+  | @as("flex-end") FlexEnd
+  | @as("center") Center
+  | @as("space-around") SpaceAround
+  | @as("space-between") SpaceBetween
+  | @as("space-evenly") SpaceEvenly
 
-type objectFit = [
-  | #cover
-  | #contain
-  | #fill
-  | #"scale-down"
-]
+type objectFit =
+  | @as("cover") Cover | @as("contain") Contain | @as("fill") Fill | @as("scale-down") ScaleDown
 
-type verticalAlign = [
-  | #auto
-  | #top
-  | #bottom
-  | #middle
-]
+type verticalAlign =
+  | @as("auto") Auto | @as("top") Top | @as("bottom") Bottom | @as("middle") Middle
 
-type borderCurve = [
-  | #circular
-  | #continuous
-]
+type borderCurve = | @as("circular") Circular | @as("continuous") Continuous
 
 // Styles are documented here
 // https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/StyleSheet/StyleSheetTypes.d.ts
@@ -336,562 +350,59 @@ type imageCoreStyle = {
   objectFit?: objectFit,
 }
 
-// Dangerous Imprecise Style
-// Contains all of
-// - image style
-// - text style
-// - view style
-// - transform style
-// - shadow style
-// - layout style
-type style = {
-  ...imageCoreStyle,
-  ...textCoreStyle,
-  ...viewCoreStyle,
-  ...transformStyle,
-  ...shadowIOSStyle,
-  ...flexStyle,
+module type BaseStyle = {
+  type t
+  type style
+}
+module SharedBindings = (S: BaseStyle) => {
+  include S
+  external array: array<t> => t = "%identity"
+  external arrayOption: array<option<t>> => t = "%identity"
+  // Escape hatch, in case something is added into RN but unsupported,
+  // Useful if you play with fancy platforms
+  // Use with caution
+  @val
+  external unsafeAddStyle: (@as(json`{}`) _, t, Js.t<'a>) => t = "Object.assign"
+
+  external unsafeStyle: Js.t<'a> => t = "%identity"
+
+  external s: style => t = "%identity"
 }
 
-external s: style => t = "%identity"
-
-// ____DangerouslyImpreciseStyle_Internal
-// Dangerous Imprecise Style
-// Contains all of
-// - image style
-// - text style
-// - view style
-// - transform style
-// - shadow style
-// - layout style
-@deprecated("Use style record with s() function") @obj
-external style: (
-  // Image Style Props (https://reactnative.dev/docs/image-style-props)
-  ~resizeMode: resizeMode=?,
-  ~overlayColor: Color.t=?,
-  ~tintColor: Color.t=?,
-  // Text Style Props (https://reactnative.dev/docs/text-style-props)
-  ~color: Color.t=?,
-  ~fontFamily: string=?,
-  ~fontSize: float=?,
-  ~fontStyle: fontStyle=?,
-  ~fontVariant: array<fontVariant>=?,
-  ~fontWeight: fontWeight=?,
-  ~includeFontPadding: bool=?,
-  ~letterSpacing: float=?,
-  ~lineHeight: float=?,
-  ~textAlign: textAlign=?,
-  ~textAlignVertical: textAlignVertical=?,
-  ~textDecorationColor: Color.t=?,
-  ~textDecorationLine: textDecorationLine=?,
-  ~textDecorationStyle: textDecorationStyle=?,
-  ~textShadowColor: Color.t=?,
-  ~textShadowOffset: offset=?,
-  ~textShadowRadius: float=?,
-  ~textTransform: textTransform=?,
-  ~verticalAlign: verticalAlign=?,
-  ~writingDirection: writingDirection=?,
-  // View styles https://reactnative.dev/docs/view-style-props
-  ~backfaceVisibility: backfaceVisibility=?,
-  ~backgroundColor: Color.t=?,
-  ~borderBlockColor: Color.t=?,
-  ~borderBlockEndColor: Color.t=?,
-  ~borderBlockStartColor: Color.t=?,
-  ~borderBottomColor: Color.t=?,
-  ~borderBottomEndRadius: float=?,
-  ~borderBottomLeftRadius: float=?,
-  ~borderBottomRightRadius: float=?,
-  ~borderBottomStartRadius: float=?,
-  ~borderBottomWidth: float=?,
-  ~borderColor: Color.t=?,
-  ~borderCurve: borderCurve=?,
-  ~borderEndColor: Color.t=?,
-  ~borderEndEndRadius: float=?,
-  ~borderEndStartRadius: float=?,
-  ~borderEndWidth: float=?,
-  ~borderLeftColor: Color.t=?,
-  ~borderLeftWidth: float=?,
-  ~borderRadius: float=?,
-  ~borderRightColor: Color.t=?,
-  ~borderRightWidth: float=?,
-  ~borderStartColor: Color.t=?,
-  ~borderStartEndRadius: float=?,
-  ~borderStartStartRadius: float=?,
-  ~borderStartWidth: float=?,
-  ~borderStyle: borderStyle=?,
-  ~borderTopColor: Color.t=?,
-  ~borderTopEndRadius: float=?,
-  ~borderTopLeftRadius: float=?,
-  ~borderTopRightRadius: float=?,
-  ~borderTopStartRadius: float=?,
-  ~borderTopWidth: float=?,
-  ~borderWidth: float=?,
-  ~elevation: float=?,
-  ~opacity: float=?,
-  // Transform Props (https://reactnative.dev/docs/transforms#props)
-  ~transform: array<transform>=?, // all other transform props are deprecated
-  // Shadow Props (https://reactnative.dev/docs/shadow-props)
-  ~shadowColor: Color.t=?,
-  ~shadowOffset: offset=?,
-  ~shadowOpacity: float=?,
-  ~shadowRadius: float=?,
-  // Layout Style Props (https://reactnative.dev/docs/layout-props)
-  ~alignContent: alignContent=?,
-  ~alignItems: alignItems=?,
-  ~alignSelf: alignSelf=?,
-  ~aspectRatio: float=?,
-  // border*Width are commented because already in view styles props (see explanation at the top)
-  // ~borderBottomWidth: float=?,
-  // ~borderEndWidth: float=?,
-  // ~borderLeftWidth: float=?,
-  // ~borderRightWidth: float=?,
-  // ~borderStartWidth: float=?,
-  // ~borderTopWidth: float=?,
-  // ~borderWidth: float=?,
-  ~bottom: size=?,
-  ~columnGap: size=?,
-  ~direction: direction=?,
-  ~display: display=?,
-  ~end: size=?,
-  ~flex: float=?,
-  ~flexBasis: margin=?,
-  ~flexDirection: flexDirection=?,
-  ~flexGrow: float=?,
-  ~flexShrink: float=?,
-  ~flexWrap: flexWrap=?,
-  ~gap: size=?,
-  ~height: size=?,
-  ~justifyContent: justifyContent=?,
-  ~left: size=?,
-  ~margin: margin=?,
-  ~marginBlock: margin=?,
-  ~marginBlockEnd: margin=?,
-  ~marginBlockStart: margin=?,
-  ~marginBottom: margin=?,
-  ~marginEnd: margin=?,
-  ~marginHorizontal: margin=?,
-  ~marginInline: margin=?,
-  ~marginInlineEnd: margin=?,
-  ~marginInlineStart: margin=?,
-  ~marginLeft: margin=?,
-  ~marginRight: margin=?,
-  ~marginStart: margin=?,
-  ~marginTop: margin=?,
-  ~marginVertical: margin=?,
-  ~maxHeight: size=?,
-  ~maxWidth: size=?,
-  ~minHeight: size=?,
-  ~minWidth: size=?,
-  ~overflow: overflow=?,
-  ~padding: size=?,
-  ~paddingBlock: size=?,
-  ~paddingBlockEnd: size=?,
-  ~paddingBlockStart: size=?,
-  ~paddingBottom: size=?,
-  ~paddingEnd: size=?,
-  ~paddingHorizontal: size=?,
-  ~paddingInline: size=?,
-  ~paddingInlineEnd: size=?,
-  ~paddingInlineStart: size=?,
-  ~paddingLeft: size=?,
-  ~paddingRight: size=?,
-  ~paddingStart: size=?,
-  ~paddingTop: size=?,
-  ~paddingVertical: size=?,
-  ~position: position=?,
-  ~right: size=?,
-  ~rowGap: size=?,
-  ~start: size=?,
-  ~top: size=?,
-  ~width: size=?,
-  ~zIndex: int=?,
-  unit,
-) => t = ""
-
-// ____ViewStyleProp_Internal
-@obj
-external viewStyle: (
-  // View styles https://reactnative.dev/docs/view-style-props
-  ~backfaceVisibility: backfaceVisibility=?,
-  ~backgroundColor: Color.t=?,
-  ~borderBlockColor: Color.t=?,
-  ~borderBlockEndColor: Color.t=?,
-  ~borderBlockStartColor: Color.t=?,
-  ~borderBottomColor: Color.t=?,
-  ~borderBottomEndRadius: float=?,
-  ~borderBottomLeftRadius: float=?,
-  ~borderBottomRightRadius: float=?,
-  ~borderBottomStartRadius: float=?,
-  ~borderBottomWidth: float=?,
-  ~borderColor: Color.t=?,
-  ~borderCurve: borderCurve=?,
-  ~borderEndColor: Color.t=?,
-  ~borderEndEndRadius: float=?,
-  ~borderEndStartRadius: float=?,
-  ~borderEndWidth: float=?,
-  ~borderLeftColor: Color.t=?,
-  ~borderLeftWidth: float=?,
-  ~borderRadius: float=?,
-  ~borderRightColor: Color.t=?,
-  ~borderRightWidth: float=?,
-  ~borderStartColor: Color.t=?,
-  ~borderStartEndRadius: float=?,
-  ~borderStartStartRadius: float=?,
-  ~borderStartWidth: float=?,
-  ~borderStyle: borderStyle=?,
-  ~borderTopColor: Color.t=?,
-  ~borderTopEndRadius: float=?,
-  ~borderTopLeftRadius: float=?,
-  ~borderTopRightRadius: float=?,
-  ~borderTopStartRadius: float=?,
-  ~borderTopWidth: float=?,
-  ~borderWidth: float=?,
-  ~elevation: float=?,
-  ~opacity: float=?,
-  // Transform Props (https://reactnative.dev/docs/transforms#props)
-  ~transform: array<transform>=?, // all other transform props are deprecated
-  // Shadow Props (https://reactnative.dev/docs/shadow-props)
-  ~shadowColor: Color.t=?,
-  ~shadowOffset: offset=?,
-  ~shadowOpacity: float=?,
-  ~shadowRadius: float=?,
-  // Layout Style Props (https://reactnative.dev/docs/layout-props)
-  ~alignContent: alignContent=?,
-  ~alignItems: alignItems=?,
-  ~alignSelf: alignSelf=?,
-  ~aspectRatio: float=?,
-  // border*Width are commented because already in view styles props (see explanation at the top)
-  // ~borderBottomWidth: float=?,
-  // ~borderEndWidth: float=?,
-  // ~borderLeftWidth: float=?,
-  // ~borderRightWidth: float=?,
-  // ~borderStartWidth: float=?,
-  // ~borderTopWidth: float=?,
-  // ~borderWidth: float=?,
-  ~bottom: size=?,
-  ~columnGap: size=?,
-  ~direction: direction=?,
-  ~display: display=?,
-  ~end: size=?,
-  ~flex: float=?,
-  ~flexBasis: margin=?,
-  ~flexDirection: flexDirection=?,
-  ~flexGrow: float=?,
-  ~flexShrink: float=?,
-  ~flexWrap: flexWrap=?,
-  ~gap: size=?,
-  ~height: size=?,
-  ~justifyContent: justifyContent=?,
-  ~left: size=?,
-  ~margin: margin=?,
-  ~marginBlock: margin=?,
-  ~marginBlockEnd: margin=?,
-  ~marginBlockStart: margin=?,
-  ~marginBottom: margin=?,
-  ~marginEnd: margin=?,
-  ~marginHorizontal: margin=?,
-  ~marginInline: margin=?,
-  ~marginInlineEnd: margin=?,
-  ~marginInlineStart: margin=?,
-  ~marginLeft: margin=?,
-  ~marginRight: margin=?,
-  ~marginStart: margin=?,
-  ~marginTop: margin=?,
-  ~marginVertical: margin=?,
-  ~maxHeight: size=?,
-  ~maxWidth: size=?,
-  ~minHeight: size=?,
-  ~minWidth: size=?,
-  ~overflow: overflow=?,
-  ~padding: size=?,
-  ~paddingBlock: size=?,
-  ~paddingBlockEnd: size=?,
-  ~paddingBlockStart: size=?,
-  ~paddingBottom: size=?,
-  ~paddingEnd: size=?,
-  ~paddingHorizontal: size=?,
-  ~paddingInline: size=?,
-  ~paddingInlineEnd: size=?,
-  ~paddingInlineStart: size=?,
-  ~paddingLeft: size=?,
-  ~paddingRight: size=?,
-  ~paddingStart: size=?,
-  ~paddingTop: size=?,
-  ~paddingVertical: size=?,
-  ~position: position=?,
-  ~right: size=?,
-  ~rowGap: size=?,
-  ~start: size=?,
-  ~top: size=?,
-  ~width: size=?,
-  ~zIndex: int=?,
-  unit,
-) => t = ""
-
-// ____TextStyleProp_Internal
-@obj
-external textStyle: (
-  // Text Style Props (https://reactnative.dev/docs/text-style-props)
-  ~color: Color.t=?,
-  ~fontFamily: string=?,
-  ~fontSize: float=?,
-  ~fontStyle: fontStyle=?,
-  ~fontVariant: array<fontVariant>=?,
-  ~fontWeight: fontWeight=?,
-  ~includeFontPadding: bool=?,
-  ~letterSpacing: float=?,
-  ~lineHeight: float=?,
-  ~textAlign: textAlign=?,
-  ~textAlignVertical: textAlignVertical=?,
-  ~textDecorationColor: Color.t=?,
-  ~textDecorationLine: textDecorationLine=?,
-  ~textDecorationStyle: textDecorationStyle=?,
-  ~textShadowColor: Color.t=?,
-  ~textShadowOffset: offset=?,
-  ~textShadowRadius: float=?,
-  ~textTransform: textTransform=?,
-  ~verticalAlign: verticalAlign=?,
-  ~writingDirection: writingDirection=?,
-  // View styles https://reactnative.dev/docs/view-style-props
-  ~backfaceVisibility: backfaceVisibility=?,
-  ~backgroundColor: Color.t=?,
-  ~borderBlockColor: Color.t=?,
-  ~borderBlockEndColor: Color.t=?,
-  ~borderBlockStartColor: Color.t=?,
-  ~borderBottomColor: Color.t=?,
-  ~borderBottomEndRadius: float=?,
-  ~borderBottomLeftRadius: float=?,
-  ~borderBottomRightRadius: float=?,
-  ~borderBottomStartRadius: float=?,
-  ~borderBottomWidth: float=?,
-  ~borderColor: Color.t=?,
-  ~borderCurve: borderCurve=?,
-  ~borderEndColor: Color.t=?,
-  ~borderEndEndRadius: float=?,
-  ~borderEndStartRadius: float=?,
-  ~borderEndWidth: float=?,
-  ~borderLeftColor: Color.t=?,
-  ~borderLeftWidth: float=?,
-  ~borderRadius: float=?,
-  ~borderRightColor: Color.t=?,
-  ~borderRightWidth: float=?,
-  ~borderStartColor: Color.t=?,
-  ~borderStartEndRadius: float=?,
-  ~borderStartStartRadius: float=?,
-  ~borderStartWidth: float=?,
-  ~borderStyle: borderStyle=?,
-  ~borderTopColor: Color.t=?,
-  ~borderTopEndRadius: float=?,
-  ~borderTopLeftRadius: float=?,
-  ~borderTopRightRadius: float=?,
-  ~borderTopStartRadius: float=?,
-  ~borderTopWidth: float=?,
-  ~borderWidth: float=?,
-  ~elevation: float=?,
-  ~opacity: float=?,
-  // Transform Props (https://reactnative.dev/docs/transforms#props)
-  ~transform: array<transform>=?, // all other transform props are deprecated
-  // Shadow Props (https://reactnative.dev/docs/shadow-props)
-  ~shadowColor: Color.t=?,
-  ~shadowOffset: offset=?,
-  ~shadowOpacity: float=?,
-  ~shadowRadius: float=?,
-  // Layout Style Props (https://reactnative.dev/docs/layout-props)
-  ~alignContent: alignContent=?,
-  ~alignItems: alignItems=?,
-  ~alignSelf: alignSelf=?,
-  ~aspectRatio: float=?,
-  // border*Width are commented because already in view styles props (see explanation at the top)
-  // ~borderBottomWidth: float=?,
-  // ~borderEndWidth: float=?,
-  // ~borderLeftWidth: float=?,
-  // ~borderRightWidth: float=?,
-  // ~borderStartWidth: float=?,
-  // ~borderTopWidth: float=?,
-  // ~borderWidth: float=?,
-  ~bottom: size=?,
-  ~columnGap: size=?,
-  ~direction: direction=?,
-  ~display: display=?,
-  ~end: size=?,
-  ~flex: float=?,
-  ~flexBasis: margin=?,
-  ~flexDirection: flexDirection=?,
-  ~flexGrow: float=?,
-  ~flexShrink: float=?,
-  ~flexWrap: flexWrap=?,
-  ~gap: size=?,
-  ~height: size=?,
-  ~justifyContent: justifyContent=?,
-  ~left: size=?,
-  ~margin: margin=?,
-  ~marginBlock: margin=?,
-  ~marginBlockEnd: margin=?,
-  ~marginBlockStart: margin=?,
-  ~marginBottom: margin=?,
-  ~marginEnd: margin=?,
-  ~marginHorizontal: margin=?,
-  ~marginInline: margin=?,
-  ~marginInlineEnd: margin=?,
-  ~marginInlineStart: margin=?,
-  ~marginLeft: margin=?,
-  ~marginRight: margin=?,
-  ~marginStart: margin=?,
-  ~marginTop: margin=?,
-  ~marginVertical: margin=?,
-  ~maxHeight: size=?,
-  ~maxWidth: size=?,
-  ~minHeight: size=?,
-  ~minWidth: size=?,
-  ~overflow: overflow=?,
-  ~padding: size=?,
-  ~paddingBlock: size=?,
-  ~paddingBlockEnd: size=?,
-  ~paddingBlockStart: size=?,
-  ~paddingBottom: size=?,
-  ~paddingEnd: size=?,
-  ~paddingHorizontal: size=?,
-  ~paddingInline: size=?,
-  ~paddingInlineEnd: size=?,
-  ~paddingInlineStart: size=?,
-  ~paddingLeft: size=?,
-  ~paddingRight: size=?,
-  ~paddingStart: size=?,
-  ~paddingTop: size=?,
-  ~paddingVertical: size=?,
-  ~position: position=?,
-  ~right: size=?,
-  ~rowGap: size=?,
-  ~start: size=?,
-  ~top: size=?,
-  ~width: size=?,
-  ~zIndex: int=?,
-  unit,
-) => t = ""
-
-// ____ImageStyleProp_Internal
-@obj
-external imageStyle: (
-  // Image Style Props (https://reactnative.dev/docs/image-style-props)
-  ~resizeMode: resizeMode=?,
-  ~overlayColor: Color.t=?,
-  ~tintColor: Color.t=?,
-  ~objectFit: objectFit=?,
-  // View styles https://reactnative.dev/docs/view-style-props
-  ~backfaceVisibility: backfaceVisibility=?,
-  ~backgroundColor: Color.t=?,
-  ~borderBlockColor: Color.t=?,
-  ~borderBlockEndColor: Color.t=?,
-  ~borderBlockStartColor: Color.t=?,
-  ~borderBottomColor: Color.t=?,
-  ~borderBottomEndRadius: float=?,
-  ~borderBottomLeftRadius: float=?,
-  ~borderBottomRightRadius: float=?,
-  ~borderBottomStartRadius: float=?,
-  ~borderBottomWidth: float=?,
-  ~borderColor: Color.t=?,
-  ~borderCurve: borderCurve=?,
-  ~borderEndColor: Color.t=?,
-  ~borderEndEndRadius: float=?,
-  ~borderEndStartRadius: float=?,
-  ~borderEndWidth: float=?,
-  ~borderLeftColor: Color.t=?,
-  ~borderLeftWidth: float=?,
-  ~borderRadius: float=?,
-  ~borderRightColor: Color.t=?,
-  ~borderRightWidth: float=?,
-  ~borderStartColor: Color.t=?,
-  ~borderStartEndRadius: float=?,
-  ~borderStartStartRadius: float=?,
-  ~borderStartWidth: float=?,
-  ~borderStyle: borderStyle=?,
-  ~borderTopColor: Color.t=?,
-  ~borderTopEndRadius: float=?,
-  ~borderTopLeftRadius: float=?,
-  ~borderTopRightRadius: float=?,
-  ~borderTopStartRadius: float=?,
-  ~borderTopWidth: float=?,
-  ~borderWidth: float=?,
-  ~elevation: float=?,
-  ~opacity: float=?,
-  // Transform Props (https://reactnative.dev/docs/transforms#props)
-  ~transform: array<transform>=?, // all other transform props are deprecated
-  // Shadow Props (https://reactnative.dev/docs/shadow-props)
-  ~shadowColor: Color.t=?,
-  ~shadowOffset: offset=?,
-  ~shadowOpacity: float=?,
-  ~shadowRadius: float=?,
-  // Layout Style Props (https://reactnative.dev/docs/layout-props)
-  ~alignContent: alignContent=?,
-  ~alignItems: alignItems=?,
-  ~alignSelf: alignSelf=?,
-  ~aspectRatio: float=?,
-  // border*Width are commented because already in view styles props (see explanation at the top)
-  // ~borderBottomWidth: float=?,
-  // ~borderEndWidth: float=?,
-  // ~borderLeftWidth: float=?,
-  // ~borderRightWidth: float=?,
-  // ~borderStartWidth: float=?,
-  // ~borderTopWidth: float=?,
-  // ~borderWidth: float=?,
-  ~bottom: size=?,
-  ~columnGap: size=?,
-  ~direction: direction=?,
-  ~display: display=?,
-  ~end: size=?,
-  ~flex: float=?,
-  ~flexBasis: margin=?,
-  ~flexDirection: flexDirection=?,
-  ~flexGrow: float=?,
-  ~flexShrink: float=?,
-  ~flexWrap: flexWrap=?,
-  ~gap: size=?,
-  ~height: size=?,
-  ~justifyContent: justifyContent=?,
-  ~left: size=?,
-  ~margin: margin=?,
-  ~marginBlock: margin=?,
-  ~marginBlockEnd: margin=?,
-  ~marginBlockStart: margin=?,
-  ~marginBottom: margin=?,
-  ~marginEnd: margin=?,
-  ~marginHorizontal: margin=?,
-  ~marginInline: margin=?,
-  ~marginInlineEnd: margin=?,
-  ~marginInlineStart: margin=?,
-  ~marginLeft: margin=?,
-  ~marginRight: margin=?,
-  ~marginStart: margin=?,
-  ~marginTop: margin=?,
-  ~marginVertical: margin=?,
-  ~maxHeight: size=?,
-  ~maxWidth: size=?,
-  ~minHeight: size=?,
-  ~minWidth: size=?,
-  ~overflow: overflow=?,
-  ~padding: size=?,
-  ~paddingBlock: size=?,
-  ~paddingBlockEnd: size=?,
-  ~paddingBlockStart: size=?,
-  ~paddingBottom: size=?,
-  ~paddingEnd: size=?,
-  ~paddingHorizontal: size=?,
-  ~paddingInline: size=?,
-  ~paddingInlineEnd: size=?,
-  ~paddingInlineStart: size=?,
-  ~paddingLeft: size=?,
-  ~paddingRight: size=?,
-  ~paddingStart: size=?,
-  ~paddingTop: size=?,
-  ~paddingVertical: size=?,
-  ~position: position=?,
-  ~right: size=?,
-  ~rowGap: size=?,
-  ~start: size=?,
-  ~top: size=?,
-  ~width: size=?,
-  ~zIndex: int=?,
-  unit,
-) => t = ""
-
-let empty: t = s({})
+module BaseView = {
+  type t
+  type style = {
+    ...flexStyle,
+    ...shadowIOSStyle,
+    ...transformStyle,
+    ...viewCoreStyle,
+  }
+}
+module BaseText = {
+  type t
+  type style = {
+    ...BaseView.style,
+    ...textCoreStyle,
+  }
+}
+module BaseImage = {
+  type t
+  type style = {
+    ...flexStyle,
+    ...shadowIOSStyle,
+    ...transformStyle,
+    ...imageCoreStyle
+  }
+}
+module View = {
+  include SharedBindings(BaseView)
+  let empty: t = s({})
+}
+module Text = {
+  include SharedBindings(BaseText)
+  let empty: t = s({})
+}
+module Image = {
+  include SharedBindings(BaseImage)
+  let empty: t = s({})
+}

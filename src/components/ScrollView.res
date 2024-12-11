@@ -40,7 +40,7 @@ type scrollViewProps = {
   bouncesZoom?: bool,
   canCancelContentTouches?: bool,
   centerContent?: bool,
-  contentContainerStyle?: Style.t,
+  contentContainerStyle?: Style.View.t,
   contentInset?: Rect.t,
   contentInsetAdjustmentBehavior?: contentInsetAdjustmentBehavior,
   contentOffset?: contentOffset,

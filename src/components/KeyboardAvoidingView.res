@@ -6,7 +6,7 @@ type props = {
   ref?: ref,
   ...View.viewProps,
   behavior?: behavior,
-  contentContainerStyle?: Style.t,
+  contentContainerStyle?: Style.View.t,
   enabled?: bool,
   keyboardVerticalOffset?: float,
 }

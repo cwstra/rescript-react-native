@@ -7,7 +7,7 @@ type props = {
   hasTVPreferredFocus?: bool,
   onHideUnderlay?: unit => unit,
   onShowUnderlay?: unit => unit,
-  style?: Style.t,
+  style?: Style.View.t,
   tvParallaxProperties?: TV.parallax,
   underlayColor?: string,
 }

@@ -119,7 +119,7 @@ type coreProps = {
   onLayout?: Event.layoutEvent => unit,
   pointerEvents?: pointerEvents,
   removeClippedSubviews?: bool,
-  style?: Style.t,
+  style?: Style.View.t,
   testID?: string,
   children?: React.element,
 }

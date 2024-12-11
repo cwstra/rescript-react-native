@@ -126,7 +126,7 @@ type props = {
   resizeMode?: Style.resizeMode,
   source: Source.t,
   srcSet?: string,
-  style?: Style.t,
+  style?: Style.Image.t,
   testID?: string,
   tintColor?: Color.t,
   width?: float,

@@ -1,11 +1,15 @@
 @module("react-native") @scope("StyleSheet")
 external hairlineWidth: float = "hairlineWidth"
 @module("react-native") @scope("StyleSheet")
-external absoluteFill: Style.t = "absoluteFill"
+external absoluteFill: Style.View.t = "absoluteFill"
 @module("react-native") @scope("StyleSheet")
-external absoluteFillObject: Style.t = "absoluteFillObject"
+external absoluteFillObject: Style.View.style = "absoluteFillObject"
 
 @module("react-native") @scope("StyleSheet")
 external create: Js.t<'a> => Js.t<'a> = "create"
 @module("react-native") @scope("StyleSheet")
-external flatten: array<Style.t> => Style.t = "flatten"
+external flattenView: array<Style.View.t> => Style.View.t = "flatten"
+@module("react-native") @scope("StyleSheet")
+external flattenText: array<Style.Text.t> => Style.Text.t = "flatten"
+@module("react-native") @scope("StyleSheet")
+external flattenImage: array<Style.Image.t> => Style.Image.t = "flatten"

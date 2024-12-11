@@ -58,12 +58,12 @@ type viewabilityConfigCallbackPairs<'item> = array<viewabilityConfigCallbackPair
 
 type virtualizedListProps<'data, 'item, 'extraData> = {
   ...ScrollView.scrollViewProps,
-  \"CellRendererComponent"?: cellRendererComponent<'item>,
-  \"ListEmptyComponent"?: unit => React.element,
-  \"ListFooterComponent"?: unit => React.element,
-  \"ListFooterComponentStyle"?: Style.t,
-  \"ListHeaderComponent"?: unit => React.element,
-  \"ListHeaderComponentStyle"?: Style.t,
+  @as("CellRendererComponent") cellRendererComponent?: cellRendererComponent<'item>,
+  @as("ListEmptyComponent") listEmptyComponent?: unit => React.element,
+  @as("ListFooterComponent") listFooterComponent?: unit => React.element,
+  @as("ListFooterComponentStyle") listFooterComponentStyle?: Style.View.t,
+  @as("ListHeaderComponent") listHeaderComponent?: unit => React.element,
+  @as("ListHeaderComponentStyle") listHeaderComponentStyle?: Style.View.t,
   debug?: bool,
   disableVirtualization?: bool, // deprecated
   extraData?: 'extraData,
@@ -92,7 +92,7 @@ type virtualizedListProps<'data, 'item, 'extraData> = {
 type coreProps<'data, 'item, 'extraData> = {
   data: 'data, // any collection of 'item
   renderItem: renderItemCallback<'item>,
-  \"ItemSeparatorComponent"?: React.component<separatorComponentProps<'item>>,
+  @as("ItemSeparatorComponent") itemSeparatorComponent?: React.component<separatorComponentProps<'item>>,
   ...virtualizedListProps<'data, 'item, 'extraData>,
 }
 

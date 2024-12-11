@@ -5,7 +5,7 @@ external make: (
   ~ref: ref=?,
   // ImageBackground props
   ~imageRef: Image.ref=?,
-  ~imageStyle: Style.t=?,
+  ~imageStyle: Style.Image.t=?,
   // Image props
   ~accessibilityLabel: string=?,
   ~accessible: bool=?,
@@ -25,7 +25,7 @@ external make: (
   ~resizeMethod: Image.resizeMethod=?,
   ~resizeMode: Style.resizeMode=?,
   ~source: Image.Source.t,
-  ~style: Style.t=?,
+  ~style: Style.View.t=?,
   ~testID: string=?,
   ~children: React.element=?,
 ) => React.element = "ImageBackground"

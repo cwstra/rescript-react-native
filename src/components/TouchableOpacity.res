@@ -6,7 +6,7 @@ type props = {
   activeOpacity?: float,
   focusedOpacity?: float,
   hasTVPreferredFocus?: bool,
-  style?: Style.t,
+  style?: Style.View.t,
   tvParallaxProperties?: TV.parallax,
 }
 

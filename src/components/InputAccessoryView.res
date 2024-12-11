@@ -2,7 +2,7 @@
 external make: (
   ~backgroundColor: Color.t=?,
   ~nativeID: string=?,
-  ~style: Style.t=?,
+  ~style: Style.View.t=?,
   ~testID: string=?,
   ~children: React.element=?,
 ) => React.element = "InputAccessoryView"

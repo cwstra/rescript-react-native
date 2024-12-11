@@ -62,7 +62,7 @@ type props = {
   onPressIn?: Event.pressEvent => unit,
   onPressOut?: Event.pressEvent => unit,
   pressRetentionOffset?: Rect.t,
-  style?: interactionState => Style.t,
+  style?: interactionState => Style.View.t,
   testID?: string,
   testOnly_pressed?: bool,
   unstable_pressDelay?: int,

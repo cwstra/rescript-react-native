@@ -8,7 +8,7 @@ type props<'item, 'extraData> = {
   ref?: ref,
   ...VirtualizedList.coreProps<array<'item>, 'item, 'extraData>,
   numColumns?: int,
-  columnWrapperStyle?: Style.t,
+  columnWrapperStyle?: Style.View.t,
 }
 
 @module("react-native")
