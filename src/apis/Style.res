@@ -350,12 +350,14 @@ type imageCoreStyle = {
   objectFit?: objectFit,
 }
 
-module type BaseStyle = {
+module View = {
   type t
-  type style
-}
-module SharedBindings = (S: BaseStyle) => {
-  include S
+  type style = {
+    ...flexStyle,
+    ...shadowIOSStyle,
+    ...transformStyle,
+    ...viewCoreStyle,
+  }
   external array: array<t> => t = "%identity"
   external arrayOption: array<option<t>> => t = "%identity"
   // Escape hatch, in case something is added into RN but unsupported,
@@ -367,25 +369,28 @@ module SharedBindings = (S: BaseStyle) => {
   external unsafeStyle: Js.t<'a> => t = "%identity"
 
   external s: style => t = "%identity"
+  let empty: t = s({})
 }
-
-module BaseView = {
-  type t
-  type style = {
-    ...flexStyle,
-    ...shadowIOSStyle,
-    ...transformStyle,
-    ...viewCoreStyle,
-  }
-}
-module BaseText = {
+module Text = {
   type t
   type style = {
     ...BaseView.style,
     ...textCoreStyle,
   }
+  external array: array<t> => t = "%identity"
+  external arrayOption: array<option<t>> => t = "%identity"
+  // Escape hatch, in case something is added into RN but unsupported,
+  // Useful if you play with fancy platforms
+  // Use with caution
+  @val
+  external unsafeAddStyle: (@as(json`{}`) _, t, Js.t<'a>) => t = "Object.assign"
+
+  external unsafeStyle: Js.t<'a> => t = "%identity"
+
+  external s: style => t = "%identity"
+  let empty: t = s({})
 }
-module BaseImage = {
+module Image = {
   type t
   type style = {
     ...flexStyle,
@@ -393,16 +398,16 @@ module BaseImage = {
     ...transformStyle,
     ...imageCoreStyle
   }
-}
-module View = {
-  include SharedBindings(BaseView)
-  let empty: t = s({})
-}
-module Text = {
-  include SharedBindings(BaseText)
-  let empty: t = s({})
-}
-module Image = {
-  include SharedBindings(BaseImage)
+  external array: array<t> => t = "%identity"
+  external arrayOption: array<option<t>> => t = "%identity"
+  // Escape hatch, in case something is added into RN but unsupported,
+  // Useful if you play with fancy platforms
+  // Use with caution
+  @val
+  external unsafeAddStyle: (@as(json`{}`) _, t, Js.t<'a>) => t = "Object.assign"
+
+  external unsafeStyle: Js.t<'a> => t = "%identity"
+
+  external s: style => t = "%identity"
   let empty: t = s({})
 }

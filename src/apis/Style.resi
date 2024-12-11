@@ -351,7 +351,7 @@ type imageCoreStyle = {
   objectFit?: objectFit,
 }
 
-module BaseView: {
+module View: {
   type t
   type style = {
     ...flexStyle,
@@ -359,26 +359,6 @@ module BaseView: {
     ...transformStyle,
     ...viewCoreStyle,
   }
-}
-module BaseText: {
-  type t
-  type style = {
-    ...BaseView.style,
-    ...textCoreStyle,
-  }
-}
-module BaseImage: {
-  type t
-  type style = {
-    ...flexStyle,
-    ...shadowIOSStyle,
-    ...transformStyle,
-    ...imageCoreStyle
-  }
-}
-module View: {
-  type t = BaseView.t
-  type style = BaseView.style
   let array: array<t> => t
   let arrayOption: array<option<t>> => t
   // Escape hatch, in case something is added into RN but unsupported,
@@ -392,8 +372,11 @@ module View: {
   let empty: t
 }
 module Text: {
-  type t = BaseText.t
-  type style = BaseText.style
+  type t
+  type style = {
+    ...BaseView.style,
+    ...textCoreStyle,
+  }
   let array: array<t> => t
   let arrayOption: array<option<t>> => t
   // Escape hatch, in case something is added into RN but unsupported,
@@ -407,8 +390,13 @@ module Text: {
   let empty: t
 }
 module Image: {
-  type t = BaseImage.t
-  type style = BaseImage.style
+  type t
+  type style = {
+    ...flexStyle,
+    ...shadowIOSStyle,
+    ...transformStyle,
+    ...imageCoreStyle
+  }
   let array: array<t> => t
   let arrayOption: array<option<t>> => t
   // Escape hatch, in case something is added into RN but unsupported,
