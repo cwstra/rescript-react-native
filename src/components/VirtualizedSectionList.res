@@ -10,7 +10,7 @@ and section<'item, 'sectionData> = {
   data: array<'item>,
   key?: string,
   renderItem?: renderItemCallback<'item, 'sectionData>,
-  \"ItemSeparatorComponent"?: unit => React.element,
+  @as("ItemSeparatorComponent") itemSeparatorComponent?: unit => React.element,
   keyExtractor?: ('item, int) => string,
   sectionData?: 'sectionData,
 }
@@ -38,8 +38,10 @@ type separatorProps<'item, 'sectionData> = {
 type virtualizedSectionListProps<'sectionData, 'item, 'extraData> = {
   sections: array<section<'item, 'sectionData>>,
   renderItem: renderItemCallback<'item, 'sectionData>,
-  \"ItemSeparatorComponent"?: React.component<separatorProps<'item, 'sectionData>>,
-  \"SectionSeparatorComponent"?: React.component<separatorProps<'item, 'sectionData>>,
+  @as("ItemSeparatorComponent")
+  itemSeparatorComponent?: React.component<separatorProps<'item, 'sectionData>>,
+  @as("SectionSeparatorComponent")
+  sectionSeparatorComponent?: React.component<separatorProps<'item, 'sectionData>>,
   renderSectionFooter?: renderSectionHeaderCallback<'item, 'sectionData>,
   renderSectionHeader?: renderSectionHeaderCallback<'item, 'sectionData>,
   ...VirtualizedList.virtualizedListProps<'sectionData, 'item, 'extraData>,

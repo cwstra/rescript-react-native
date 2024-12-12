@@ -93,12 +93,12 @@ module Interpolation = {
   external fromStringArray: array<string> => outputRange = "%identity"
   external fromFloatArray: array<float> => outputRange = "%identity"
 
-  type extrapolate = 
-  | @as("extend") Extend 
-  | @as("clamp") Clamp 
-  | @as("identity") Identity
+  type extrapolate =
+    | @as("extend") Extend
+    | @as("clamp") Clamp
+    | @as("identity") Identity
 
-type config = {
+  type config = {
     inputRange: array<float>,
     outputRange: outputRange,
     easing?: Easing.t,

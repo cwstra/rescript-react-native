@@ -1,8 +1,8 @@
 include NativeElement
 
 type trackColor = {
-  \"true"?: Color.t,
-  \"false"?: Color.t,
+  @as("true") whenTrue?: Color.t,
+  @as("false") whenFalse?: Color.t,
 }
 
 type props = {
