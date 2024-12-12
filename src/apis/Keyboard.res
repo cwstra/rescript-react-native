@@ -5,14 +5,13 @@ type screenRect = {
   height: float,
 }
 
-type eventType = [
-  | #keyboardWillShow
-  | #keyboardDidShow
-  | #keyboardWillHide
-  | #keyboardDidHide
-  | #keyboardWillChangeFrame
-  | #keyboardDidChangeFrame
-]
+type eventType = 
+  | @as("keyboardWillShow") KeyboardWillShow 
+  | @as("keyboardDidShow") KeyboardDidShow 
+  | @as("keyboardWillHide") KeyboardWillHide 
+  | @as("keyboardDidHide") KeyboardDidHide 
+  | @as("keyboardWillChangeFrame") KeyboardWillChangeFrame 
+  | @as("keyboardDidChangeFrame") KeyboardDidChangeFrame 
 
 type keyboardEvent = {
   duration: float,

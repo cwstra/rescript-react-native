@@ -6,19 +6,17 @@ include NativeElement
 @deprecated("Use `Rect.t` type instead")
 type edgeInsets = Rect.t
 
-type importantForAccessibility = [
-  | #auto
-  | #yes
-  | #no
-  | #"no-hide-descendants"
-]
+type importantForAccessibility =
+  | @as("auto") Auto
+  | @as("yes") Yes
+  | @as("no") No
+  | @as("no-hide-descendants") NoHideDescendants
 
-type pointerEvents = [
-  | #auto
-  | #none
-  | #"box-none"
-  | #"box-only"
-]
+type pointerEvents =
+  | @as("auto") Auto
+  | @as("none") None
+  | @as("box-none") BoxNone
+  | @as("box-only") BoxOnly
 
 type gestureResponderHandlersProps = {
   onMoveShouldSetResponder?: Event.pressEvent => bool,

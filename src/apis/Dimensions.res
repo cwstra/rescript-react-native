@@ -10,10 +10,15 @@ type handler = {
   window: displayMetrics,
 }
 
-@module("react-native") @scope("Dimensions")
-external get: [#window | #screen] => displayMetrics = "get"
+type dimensionArg =
+  | @as("window") Window
+  | @as("screen") Screen
 
-type eventType = [#change]
+@module("react-native") @scope("Dimensions")
+external get: dimensionArg => displayMetrics = "get"
+
+type eventType = 
+  | @as("change") Change 
 
 @module("react-native") @scope("Dimensions")
 external addEventListener: (eventType, handler => unit) => EventSubscription.t = "addEventListener"

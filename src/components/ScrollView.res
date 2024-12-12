@@ -3,28 +3,40 @@ include ScrollViewElement
 type contentOffset
 @obj external contentOffset: (~x: float, ~y: float) => contentOffset = ""
 
-type contentInsetAdjustmentBehavior = [
-  | #automatic
-  | #scrollableAxes
-  | #never
-  | #always
-]
+type contentInsetAdjustmentBehavior = 
+  | @as("automatic") Automatic 
+  | @as("scrollableAxes") ScrollableAxes 
+  | @as("never") Never 
+  | @as("always") Always 
 
-type decelerationRate = [#fast | #normal]
+type decelerationRate = 
+  | @as("fast") Fast 
+  | @as("normal") Normal 
 
-type indicatorStyle = [#default | #black | #white]
+type indicatorStyle = 
+  | @as("default") Default 
+  | @as("black") Black 
+  | @as("white") White 
 
-type keyboardDismissMode = [
-  | #none
-  | #interactive
-  | #"on-drag"
-]
+type keyboardDismissMode = 
+  | @as("none") None 
+  | @as("interactive") Interactive 
+  | @as("on-drag") OnDrag 
 
-type keyboardShouldPersistTaps = [#always | #never | #handled]
+type keyboardShouldPersistTaps = 
+  | @as("always") Always 
+  | @as("never") Never 
+  | @as("handled") Handled 
 
-type overScrollMode = [#always | #never | #auto]
+type overScrollMode = 
+  | @as("always") Always 
+  | @as("never") Never 
+  | @as("auto") Auto 
 
-type snapToAlignment = [#start | #center | #end]
+type snapToAlignment = 
+  | @as("start") Start 
+  | @as("center") Center 
+  | @as("end") End 
 
 type maintainVisibleContentPosition = {
   autoscrollToTopThreshold?: float,

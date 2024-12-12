@@ -1,20 +1,23 @@
-type animationType = [
-  | #spring
-  | #linear
-  | #easeInEaseOut
-  | #easeIn
-  | #easeOut
-  | #keyboard
-]
+type animationType =
+  | @as("spring") Spring
+  | @as("linear") Linear
+  | @as("easeInEaseOut") EaseInEaseOut
+  | @as("easeIn") EaseIn
+  | @as("easeOut") EaseOut
+  | @as("keyboard") Keyboard
 
-type property = [#opacity | #scaleX | #scaleY | #scaleXY]
+type property =
+  | @as("opacity") Opacity
+  | @as("scaleX") ScaleX
+  | @as("scaleY") ScaleY
+  | @as("scaleXY") ScaleXY
 
 type animationConfig = {
   duration?: float,
   delay?: float,
   springDamping?: float,
   initialVelocity?: float,
-  \"type"?: animationType,
+  @as("type") type_?: animationType,
   property?: property,
 }
 
@@ -37,7 +40,7 @@ external configureNextWithEndCallback: (layoutAnimationConfig, unit => unit) => 
 @module("react-native") @scope("LayoutAnimation")
 external create: (
   ~duration: float,
-  ~\"type": animationType,
+  ~type_: animationType,
   ~property: property,
 ) => layoutAnimationConfig = "create"
 

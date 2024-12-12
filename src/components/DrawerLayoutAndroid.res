@@ -12,17 +12,23 @@ type drawerSlideEvent = DrawerSlideEvent.t
 
 type t
 
-type androidInteractionState = [#idle | #dragging | #settling]
+type androidInteractionState =
+  | @as("idle") Idle
+  | @as("dragging") Dragging
+  | @as("settling") Settling
 
-type drawerLockMode = [
-  | #unlocked
-  | #"locked-closed"
-  | #"locked-open"
-]
+type drawerLockMode =
+  | @as("unlocked") Unlocked
+  | @as("locked-closed") LockedClosed
+  | @as("locked-open") LockedOpen
 
-type drawerPosition = [#left | #right]
+type drawerPosition =
+  | @as("left") Left
+  | @as("right") Right
 
-type keyboardDismissMode = [#none | #"on-drag"]
+type keyboardDismissMode =
+  | @as("none") None
+  | @as("on-drag") OnDrag
 
 type props = {
   ref?: ref,

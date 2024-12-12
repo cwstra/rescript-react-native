@@ -1,14 +1,13 @@
 include NativeElement
 
-type styleAttr = [
-  | #Horizontal
-  | #Normal
-  | #Small
-  | #Large
-  | #Inverse
-  | #SmallInverse
-  | #LargeInverse
-]
+type styleAttr =
+  | Horizontal
+  | Normal
+  | Small
+  | Large
+  | Inverse
+  | SmallInverse
+  | LargeInverse
 
 type props = {
   ref?: ref,

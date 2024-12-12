@@ -1,6 +1,9 @@
 include NativeElement
 
-type behavior = [#height | #position | #padding]
+type behavior = 
+  | @as("height") Height 
+  | @as("position") Position 
+  | @as("padding") Padding 
 
 type props = {
   ref?: ref,

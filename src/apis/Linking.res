@@ -33,7 +33,8 @@ external sendIntentWithExtras: (string, array<extra>) => unit = "sendIntent"
 
 type url = {url: string}
 
-type eventType = [#url]
+type eventType = 
+  | @as("url") Url 
 
 @scope("Linking") @module("react-native")
 external addEventListener: (eventType, url => unit) => EventSubscription.t = "addEventListener"

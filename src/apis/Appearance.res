@@ -1,4 +1,6 @@
-type t = [#dark | #light]
+type t = 
+  | @as("dark") Dark 
+  | @as("light") Light 
 
 @module("react-native") @scope("Appearance") @return(nullable)
 external getColorScheme: unit => option<t> = "getColorScheme"

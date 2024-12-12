@@ -33,46 +33,49 @@ type value
 
 @obj external intValue: (~min: int, ~max: int, ~now: int) => value = ""
 
-type liveRegion = [#none | #polite | #assertive]
+type liveRegion = 
+  | @as("none") None 
+  | @as("polite") Polite 
+  | @as("assertive") Assertive 
 
-type role = [
-  | #adjustable
-  | #alert
-  | #article
-  | #banner
-  | #button
-  | #checkbox
-  | #combobox
-  | #complementary
-  | #contentinfo
-  | #form
-  | #header
-  | #image
-  | #imagebutton
-  | #keyboardkey
-  | #link
-  | #list
-  | #listitem
-  | #main
-  | #menu
-  | #menubar
-  | #menuitem
-  | #navigation
-  | #none
-  | #progressbar
-  | #radio
-  | #radiogroup
-  | #region
-  | #scrollbar
-  | #search
-  | #spinbutton
-  | #summary
-  | #"switch"
-  | #tab
-  | #tabbar
-  | #tablist
-  | #text
-  | #timer
-  | #togglebutton
-  | #toolbar
-]
+type role = 
+  | @as("adjustable") Adjustable 
+  | @as("alert") Alert 
+  | @as("article") Article 
+  | @as("banner") Banner 
+  | @as("button") Button 
+  | @as("checkbox") Checkbox 
+  | @as("combobox") Combobox 
+  | @as("complementary") Complementary 
+  | @as("contentinfo") Contentinfo 
+  | @as("form") Form 
+  | @as("header") Header 
+  | @as("image") Image 
+  | @as("imagebutton") Imagebutton 
+  | @as("keyboardkey") Keyboardkey 
+  | @as("link") Link 
+  | @as("list") List 
+  | @as("listitem") Listitem 
+  | @as("main") Main 
+  | @as("menu") Menu 
+  | @as("menubar") Menubar 
+  | @as("menuitem") Menuitem 
+  | @as("navigation") Navigation 
+  | @as("none") None 
+  | @as("progressbar") Progressbar 
+  | @as("radio") Radio 
+  | @as("radiogroup") Radiogroup 
+  | @as("region") Region 
+  | @as("scrollbar") Scrollbar 
+  | @as("search") Search 
+  | @as("spinbutton") Spinbutton 
+  | @as("summary") Summary 
+  | @as("switch") Switch 
+  | @as("tab") Tab 
+  | @as("tabbar") Tabbar 
+  | @as("tablist") Tablist 
+  | @as("text") Text 
+  | @as("timer") Timer 
+  | @as("togglebutton") Togglebutton 
+  | @as("toolbar") Toolbar 
+

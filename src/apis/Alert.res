@@ -3,7 +3,10 @@ type options = {
   onDismiss?: unit => unit,
 }
 
-type style = [#default | #cancel | #destructive]
+type style = 
+  | @as("default") Default 
+  | @as("cancel") Cancel 
+  | @as("destructive") Destructive 
 
 type button = {
   text?: string,
@@ -21,22 +24,22 @@ external alert: (
   unit,
 ) => unit = "alert"
 
-type type_ = [
-  | #default
-  | #"plain-text"
-  | #"secure-text"
-  | #"login-password"
-]
+type type_ = 
+  | @as("default") Default 
+  | @as("plain-text") PlainText 
+  | @as("secure-text") SecureText 
+  | @as("login-password") LoginPassword
+
+@unboxed
+type callbackOrButtons =
+  | Callback(string => unit)
+  | Buttons(array<button>)
 
 @scope("Alert") @module("react-native")
 external prompt: (
   ~title: string,
   ~message: string=?,
-  ~callbackOrButtons: @unwrap
-  [
-    | #callback(string => unit)
-    | #buttons(array<button>)
-  ]=?,
+  ~callbackOrButtons: callbackOrButtons=?,
   ~type_: type_=?,
   ~defaultValue: string=?,
   ~keyboardType: string=?,

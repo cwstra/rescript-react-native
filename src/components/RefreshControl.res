@@ -1,5 +1,9 @@
 include NativeElement
 
+type size = 
+  | @as("default") Default 
+  | @as("large") Large 
+
 type props = {
   ref?: ref,
   ...View.viewProps,
@@ -9,7 +13,7 @@ type props = {
   progressBackgroundColor?: Color.t,
   progressViewOffset?: float,
   refreshing: bool,
-  size?: [#default | #large],
+  size?: size,
   tintColor?: Color.t,
   title?: string,
   titleColor?: Color.t,

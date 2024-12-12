@@ -1,155 +1,147 @@
 module Ios = {
   // Standard Colors <https://developer.apple.com/documentation/uikit/uicolor/standard_colors>
-  type adaptableColors = [
-    | #systemBlue
-    | #systemBrown
-    | #systemGreen
-    | #systemIndigo
-    | #systemOrange
-    | #systemPink
-    | #systemPurple
-    | #systemRed
-    | #systemTeal
-    | #systemYellow
-  ]
-  type adaptableGrayColors = [
-    | #systemGray
-    | #systemGray2
-    | #systemGray3
-    | #systemGray4
-    | #systemGray5
-    | #systemGray6
-  ]
-  type transparentColors = [
-    | #clear
-  ]
-  type fixedColors = [
-    | #black
-    | #blue
-    | #brown
-    | #cyan
-    | #darkGray
-    | #gray
-    | #green
-    | #lightGray
-    | #magenta
-    | #orange
-    | #purple
-    | #red
-    | #white
-    | #yellow
-  ]
+  type adaptableColors =
+    | @as("systemBlue") SystemBlue
+    | @as("systemBrown") SystemBrown
+    | @as("systemGreen") SystemGreen
+    | @as("systemIndigo") SystemIndigo
+    | @as("systemOrange") SystemOrange
+    | @as("systemPink") SystemPink
+    | @as("systemPurple") SystemPurple
+    | @as("systemRed") SystemRed
+    | @as("systemTeal") SystemTeal
+    | @as("systemYellow") SystemYellow
+
+  type adaptableGrayColors =
+    | @as("systemGray") SystemGray
+    | @as("systemGray2") SystemGray2
+    | @as("systemGray3") SystemGray3
+    | @as("systemGray4") SystemGray4
+    | @as("systemGray5") SystemGray5
+    | @as("systemGray6") SystemGray6
+
+  type transparentColors = | @as("clear") Clear
+
+  type fixedColors =
+    | @as("black") Black
+    | @as("blue") Blue
+    | @as("brown") Brown
+    | @as("cyan") Cyan
+    | @as("darkGray") DarkGray
+    | @as("gray") Gray
+    | @as("green") Green
+    | @as("lightGray") LightGray
+    | @as("magenta") Magenta
+    | @as("orange") Orange
+    | @as("purple") Purple
+    | @as("red") Red
+    | @as("white") White
+    | @as("yellow") Yellow
 
   // UI Element Colors https://developer.apple.com/documentation/uikit/uicolor/ui_element_colors
-  type labelColors = [
-    | #label
-    | #secondaryLabel
-    | #tertiaryLabel
-    | #quaternaryLabel
-  ]
-  type fillColors = [
-    | #systemFill
-    | #secondarySystemFill
-    | #tertiarySystemFill
-    | #quaternarySystemFill
-  ]
-  type textColors = [
-    | #placeholderText
-  ]
-  type standardContentBackgroundColors = [
-    | #systemBackground
-    | #secondarySystemBackground
-    | #tertiarySystemBackground
-  ]
-  type groupedContentBackgroundColors = [
-    | #systemGroupedBackground
-    | #secondarySystemGroupedBackground
-    | #tertiarySystemGroupedBackground
-  ]
-  type separatorColors = [
-    | #separator
-    | #opaqueSeparator
-  ]
-  type linkColors = [
-    | #link
-  ]
-  type nonadaptableColors = [
-    | #darkText
-    | #lightText
-  ]
-  type t = [
-    | adaptableColors
-    | adaptableGrayColors
-    | transparentColors
-    | fixedColors
-    | labelColors
-    | fillColors
-    | textColors
-    | standardContentBackgroundColors
-    | groupedContentBackgroundColors
-    | separatorColors
-    | linkColors
-    | nonadaptableColors
-  ]
+  type labelColors =
+    | @as("label") Label
+    | @as("secondaryLabel") SecondaryLabel
+    | @as("tertiaryLabel") TertiaryLabel
+    | @as("quaternaryLabel") QuaternaryLabel
+
+  type fillColors =
+    | @as("systemFill") SystemFill
+    | @as("secondarySystemFill") SecondarySystemFill
+    | @as("tertiarySystemFill") TertiarySystemFill
+    | @as("quaternarySystemFill") QuaternarySystemFill
+
+  type textColors = | @as("placeholderText") PlaceholderText
+
+  type standardContentBackgroundColors =
+    | @as("systemBackground") SystemBackground
+    | @as("secondarySystemBackground") SecondarySystemBackground
+    | @as("tertiarySystemBackground") TertiarySystemBackground
+
+  type groupedContentBackgroundColors =
+    | @as("systemGroupedBackground") SystemGroupedBackground
+    | @as("secondarySystemGroupedBackground") SecondarySystemGroupedBackground
+    | @as("tertiarySystemGroupedBackground") TertiarySystemGroupedBackground
+
+  type separatorColors =
+    | @as("separator") Separator
+    | @as("opaqueSeparator") OpaqueSeparator
+
+  type linkColors = | @as("link") Link
+
+  type nonadaptableColors =
+    | @as("darkText") DarkText
+    | @as("lightText") LightText
+
+  type t =
+    | ...adaptableColors
+    | ...adaptableGrayColors
+    | ...transparentColors
+    | ...fixedColors
+    | ...labelColors
+    | ...fillColors
+    | ...textColors
+    | ...standardContentBackgroundColors
+    | ...groupedContentBackgroundColors
+    | ...separatorColors
+    | ...linkColors
+    | ...nonadaptableColors
 }
 
 module Android = {
-  type color = [
-    | #"@android:color/background_dark"
-    | #"@android:color/background_light"
-    | #"@android:color/black"
-    | #"@android:color/darker_gray"
-    | #"@android:color/holo_blue_bright"
-    | #"@android:color/holo_blue_dark"
-    | #"@android:color/holo_blue_light"
-    | #"@android:color/holo_green_dark"
-    | #"@android:color/holo_green_light"
-    | #"@android:color/holo_orange_dark"
-    | #"@android:color/holo_orange_light"
-    | #"@android:color/holo_purple"
-    | #"@android:color/holo_red_dark"
-    | #"@android:color/holo_red_light"
-    | #"@android:color/primary_text_dark"
-    | #"@android:color/primary_text_dark_nodisable"
-    | #"@android:color/primary_text_light"
-    | #"@android:color/primary_text_light_nodisable"
-    | #"@android:color/secondary_text_dark"
-    | #"@android:color/secondary_text_dark_nodisable"
-    | #"@android:color/secondary_text_light"
-    | #"@android:color/secondary_text_light_nodisable"
-    | #"@android:color/tab_indicator_text"
-    | #"@android:color/tertiary_text_dark"
-    | #"@android:color/tertiary_text_light"
-    | #"@android:color/transparent"
-    | #"@android:color/white"
-    | #"@android:color/widget_edittext_dark"
-  ]
+  type color =
+    | @as("@android:color/background_dark") BackgroundDark
+    | @as("@android:color/background_light") BackgroundLight
+    | @as("@android:color/black") Black
+    | @as("@android:color/darker_gray") DarkerGray
+    | @as("@android:color/holo_blue_bright") HoloBlueBright
+    | @as("@android:color/holo_blue_dark") HoloBlueDark
+    | @as("@android:color/holo_blue_light") HoloBlueLight
+    | @as("@android:color/holo_green_dark") HoloGreenDark
+    | @as("@android:color/holo_green_light") HoloGreenLight
+    | @as("@android:color/holo_orange_dark") HoloOrangeDark
+    | @as("@android:color/holo_orange_light") HoloOrangeLight
+    | @as("@android:color/holo_purple") HoloPurple
+    | @as("@android:color/holo_red_dark") HoloRedDark
+    | @as("@android:color/holo_red_light") HoloRedLight
+    | @as("@android:color/primary_text_dark") PrimaryTextDark
+    | @as("@android:color/primary_text_dark_nodisable") PrimaryTextDarkNodisable
+    | @as("@android:color/primary_text_light") PrimaryTextLight
+    | @as("@android:color/primary_text_light_nodisable") PrimaryTextLightNodisable
+    | @as("@android:color/secondary_text_dark") SecondaryTextDark
+    | @as("@android:color/secondary_text_dark_nodisable") SecondaryTextDarkNodisable
+    | @as("@android:color/secondary_text_light") SecondaryTextLight
+    | @as("@android:color/secondary_text_light_nodisable") SecondaryTextLightNodisable
+    | @as("@android:color/tab_indicator_text") TabIndicatorText
+    | @as("@android:color/tertiary_text_dark") TertiaryTextDark
+    | @as("@android:color/tertiary_text_light") TertiaryTextLight
+    | @as("@android:color/transparent") Transparent
+    | @as("@android:color/white") White
+    | @as("@android:color/widget_edittext_dark") WidgetEditTextDark
 
-  type attr = [
-    | #"?android:attr/colorAccent"
-    | #"?android:attr/colorActivatedHighlight"
-    | #"?android:attr/colorBackground"
-    | #"?android:attr/colorBackgroundFloating"
-    | #"?android:attr/colorButtonNormal"
-    | #"?android:attr/colorControlHighlight"
-    | #"?android:attr/colorControlNormal"
-    | #"?android:attr/colorEdgeEffect"
-    | #"?android:attr/colorError"
-    | #"?android:attr/colorFocusedHighlight"
-    | #"?android:attr/colorForeground"
-    | #"?android:attr/colorForegroundInverse"
-    | #"?android:attr/colorLongPressedHighlight"
-    | #"?android:attr/colorMultiSelectHighlight"
-    | #"?android:attr/colorPressedHighlight"
-    | #"?android:attr/colorPrimary"
-    | #"?android:attr/colorPrimaryDark"
-    | #"?android:attr/colorSecondary"
-  ]
+  type attr =
+    | @as("?android:attr/colorAccent") ColorAccent
+    | @as("?android:attr/colorActivatedHighlight") ColorActivatedHighlight
+    | @as("?android:attr/colorBackground") ColorBackground
+    | @as("?android:attr/colorBackgroundFloating") ColorBackgroundFloating
+    | @as("?android:attr/colorButtonNormal") ColorButtonNormal
+    | @as("?android:attr/colorControlHighlight") ColorControlHighlight
+    | @as("?android:attr/colorControlNormal") ColorControlNormal
+    | @as("?android:attr/colorEdgeEffect") ColorEdgeEffect
+    | @as("?android:attr/colorError") ColorError
+    | @as("?android:attr/colorFocusedHighlight") ColorFocusedHighlight
+    | @as("?android:attr/colorForeground") ColorForeground
+    | @as("?android:attr/colorForegroundInverse") ColorForegroundInverse
+    | @as("?android:attr/colorLongPressedHighlight") ColorLongPressedHighlight
+    | @as("?android:attr/colorMultiSelectHighlight") ColorMultiSelectHighlight
+    | @as("?android:attr/colorPressedHighlight") ColorPressedHighlight
+    | @as("?android:attr/colorPrimary") ColorPrimary
+    | @as("?android:attr/colorPrimaryDark") ColorPrimaryDark
+    | @as("?android:attr/colorSecondary") ColorSecondary
 
-  type t = [
-    | color
-    | attr
-  ]
+  type t =
+    |... color
+    |... attr
 }
 
 @module("react-native") @variadic

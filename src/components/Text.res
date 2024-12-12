@@ -1,29 +1,34 @@
 include NativeElement
 
-type android_hyphenationFrequency = [
-  | #normal
-  | #none
-  | #full
-]
-type dataDetectorType = [
-  | #phoneNumber
-  | #link
-  | #address
-  | #calendarEvent
-  | #none
-  | #all
-]
+type android_hyphenationFrequency =
+  | @as("normal") Normal
+  | @as("none") None
+  | @as("full") Full
 
-type ellipsizeMode = [#clip | #head | #middle | #tail]
+type dataDetectorType =
+  | @as("phoneNumber") PhoneNumber
+  | @as("link") Link
+  | @as("address") Address
+  | @as("calendarEvent") CalendarEvent
+  | @as("none") None
+  | @as("all") All
 
-type textBreakStrategy = [#simple | #highQuality | #balanced]
+type ellipsizeMode =
+  | @as("clip") Clip
+  | @as("head") Head
+  | @as("middle") Middle
+  | @as("tail") Tail
 
-type lineBreakStrategyIOS = [
-  | #none
-  | #standard
-  | #"hangul-word"
-  | #"push-out"
-]
+type textBreakStrategy =
+  | @as("simple") Simple
+  | @as("highQuality") HighQuality
+  | @as("balanced") Balanced
+
+type lineBreakStrategyIOS =
+  | @as("none") None
+  | @as("standard") Standard
+  | @as("hangul-word") HangulWord
+  | @as("push-out") PushOut
 
 type accessibilityProps = {
   accessible?: bool,

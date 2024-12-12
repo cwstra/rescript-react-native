@@ -1,11 +1,10 @@
 include NativeElement
 
-type cache = [
-  | #default
-  | #reload
-  | #"force-cache"
-  | #"only-if-cached"
-]
+type cache =
+  | @as("default") Default
+  | @as("reload") Reload
+  | @as("force-cache") ForceCache
+  | @as("only-if-cached") OnlyIfCached
 
 type uriSource = {
   uri: string,
@@ -69,23 +68,24 @@ module ProgressEvent = {
 
 type progressEvent = ProgressEvent.t
 
-type resizeMethod = [#auto | #resize | #scale]
+type resizeMethod =
+  | @as("auto") Auto
+  | @as("resize") Resize
+  | @as("scale") Scale
 
-type referrerPolicy = [
-  | #"no-referrer"
-  | #"no-referrer-when-downgrade"
-  | #origin
-  | #"origin-when-cross-origin"
-  | #"same-origin"
-  | #"strict-origin"
-  | #"strict-origin-when-cross-origin"
-  | #"unsafe-url"
-]
+type referrerPolicy =
+  | @as("no-referrer") NoReferrer
+  | @as("no-referrer-when-downgrade") NoReferrerWhenDowngrade
+  | @as("origin") Origin
+  | @as("origin-when-cross-origin") OriginWhenCrossOrigin
+  | @as("same-origin") SameOrigin
+  | @as("strict-origin") StrictOrigin
+  | @as("strict-origin-when-cross-origin") StrictOriginWhenCrossOrigin
+  | @as("unsafe-url") UnsafeUrl
 
-type crossOrigin = [
-  | #anonymous
-  | #"use-credentials"
-]
+type crossOrigin =
+  | @as("anonymous") Anonymous
+  | @as("use-credentials") UseCredentials
 
 type props = {
   ref?: ref,

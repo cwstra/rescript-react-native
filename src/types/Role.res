@@ -1,76 +1,76 @@
-type t = [
-  | #"switch"
-  | #alert
-  | #alertdialog
-  | #application
-  | #article
-  | #banner
-  | #button
-  | #cell
-  | #checkbox
-  | #columnheader
-  | #combobox
-  | #complementary
-  | #contentinfo
-  | #definition
-  | #dialog
-  | #directory
-  | #document
-  | #drawerlayout
-  | #dropdownlist
-  | #feed
-  | #figure
-  | #form
-  | #grid
-  | #group
-  | #heading
-  | #horizontalscrollview
-  | #iconmenu
-  | #img
-  | #link
-  | #list
-  | #listitem
-  | #log
-  | #main
-  | #marquee
-  | #math
-  | #menu
-  | #menubar
-  | #menuitem
-  | #meter
-  | #navigation
-  | #none
-  | #note
-  | #option
-  | #pager
-  | #presentation
-  | #progressbar
-  | #radio
-  | #radiogroup
-  | #region
-  | #row
-  | #rowgroup
-  | #rowheader
-  | #scrollbar
-  | #scrollview
-  | #searchbox
-  | #separator
-  | #slider
-  | #slidingdrawer
-  | #spinbutton
-  | #status
-  | #summary
-  | #tab
-  | #table
-  | #tablist
-  | #tabpanel
-  | #term
-  | #timer
-  | #toolbar
-  | #tooltip
-  | #tree
-  | #treegrid
-  | #treeitem
-  | #viewgroup
-  | #webview
-]
+type t = 
+  | @as("switch") Switch 
+  | @as("alert") Alert 
+  | @as("alertdialog") Alertdialog 
+  | @as("application") Application 
+  | @as("article") Article 
+  | @as("banner") Banner 
+  | @as("button") Button 
+  | @as("cell") Cell 
+  | @as("checkbox") Checkbox 
+  | @as("columnheader") Columnheader 
+  | @as("combobox") Combobox 
+  | @as("complementary") Complementary 
+  | @as("contentinfo") Contentinfo 
+  | @as("definition") Definition 
+  | @as("dialog") Dialog 
+  | @as("directory") Directory 
+  | @as("document") Document 
+  | @as("drawerlayout") Drawerlayout 
+  | @as("dropdownlist") Dropdownlist 
+  | @as("feed") Feed 
+  | @as("figure") Figure 
+  | @as("form") Form 
+  | @as("grid") Grid 
+  | @as("group") Group 
+  | @as("heading") Heading 
+  | @as("horizontalscrollview") Horizontalscrollview 
+  | @as("iconmenu") Iconmenu 
+  | @as("img") Img 
+  | @as("link") Link 
+  | @as("list") List 
+  | @as("listitem") Listitem 
+  | @as("log") Log 
+  | @as("main") Main 
+  | @as("marquee") Marquee 
+  | @as("math") Math 
+  | @as("menu") Menu 
+  | @as("menubar") Menubar 
+  | @as("menuitem") Menuitem 
+  | @as("meter") Meter 
+  | @as("navigation") Navigation 
+  | @as("none") None 
+  | @as("note") Note 
+  | @as("option") Option 
+  | @as("pager") Pager 
+  | @as("presentation") Presentation 
+  | @as("progressbar") Progressbar 
+  | @as("radio") Radio 
+  | @as("radiogroup") Radiogroup 
+  | @as("region") Region 
+  | @as("row") Row 
+  | @as("rowgroup") Rowgroup 
+  | @as("rowheader") Rowheader 
+  | @as("scrollbar") Scrollbar 
+  | @as("scrollview") Scrollview 
+  | @as("searchbox") Searchbox 
+  | @as("separator") Separator 
+  | @as("slider") Slider 
+  | @as("slidingdrawer") Slidingdrawer 
+  | @as("spinbutton") Spinbutton 
+  | @as("status") Status 
+  | @as("summary") Summary 
+  | @as("tab") Tab 
+  | @as("table") Table 
+  | @as("tablist") Tablist 
+  | @as("tabpanel") Tabpanel 
+  | @as("term") Term 
+  | @as("timer") Timer 
+  | @as("toolbar") Toolbar 
+  | @as("tooltip") Tooltip 
+  | @as("tree") Tree 
+  | @as("treegrid") Treegrid 
+  | @as("treeitem") Treeitem 
+  | @as("viewgroup") Viewgroup 
+  | @as("webview") Webview 
+

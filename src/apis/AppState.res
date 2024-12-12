@@ -1,4 +1,9 @@
-type t = [#active | #background | #inactive | #unknown | #extension]
+type t = 
+  | @as("active") Active 
+  | @as("background") Background 
+  | @as("inactive") Inactive 
+  | @as("unknown") Unknown 
+  | @as("extension") Extension 
 
 @scope("AppState") @module("react-native")
 external currentState: t = "currentState"

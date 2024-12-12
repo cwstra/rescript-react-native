@@ -1,14 +1,15 @@
 include NativeElement
 
-type orientation = [
-  | #landscape
-  | #"landscape-left"
-  | #"landscape-right"
-  | #portrait
-  | #"portrait-upside-down"
-]
+type orientation = 
+  | @as("landscape") Landscape 
+  | @as("landscape-left") LandscapeLeft 
+  | @as("landscape-right") LandscapeRight 
+  | @as("portrait") Portrait 
+  | @as("portrait-upside-down") PortraitUpsideDown 
 
-type orientationChange = [#landscape | #portrait]
+type orientationChange = 
+  | @as("landscape") Landscape 
+  | @as("portrait") Portrait 
 
 module OrientationChangeEvent = {
   type payload = {orientation: orientationChange}
@@ -20,14 +21,16 @@ module OrientationChangeEvent = {
 
 type orientationChangeEvent = OrientationChangeEvent.t
 
-type animationType = [#none | #slide | #fade]
+type animationType = 
+  | @as("none") None 
+  | @as("slide") Slide 
+  | @as("fade") Fade 
 
-type presentationStyle = [
-  | #fullScreen
-  | #pageSheet
-  | #formSheet
-  | #overFullScreen
-]
+type presentationStyle = 
+  | @as("fullScreen") FullScreen 
+  | @as("pageSheet") PageSheet 
+  | @as("formSheet") FormSheet 
+  | @as("overFullScreen") OverFullScreen 
 
 @react.component @module("react-native")
 external make: (

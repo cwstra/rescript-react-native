@@ -1,10 +1,12 @@
-type barStyle = [
-  | #default
-  | #"light-content"
-  | #"dark-content"
-]
+type barStyle =
+  | @as("default") Default
+  | @as("light-content") LightContent
+  | @as("dark-content") DarkContent
 
-type showHideTransition = [#fade | #none | #slide]
+type showHideTransition =
+  | @as("fade") Fade
+  | @as("none") None
+  | @as("slide") Slide
 
 @react.component @module("react-native")
 external make: (
