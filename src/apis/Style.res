@@ -31,7 +31,7 @@ type transform
 @obj external skewY: (~skewY: angle) => transform = ""
 // @todo matrix
 
-external unsafeTransform: Js.t<'a> => transform = "%identity"
+external unsafeTransform: {..} => transform = "%identity"
 
 @unboxed
 type transformOriginX =
@@ -364,9 +364,9 @@ module View = {
   // Useful if you play with fancy platforms
   // Use with caution
   @val
-  external unsafeAddStyle: (@as(json`{}`) _, t, Js.t<'a>) => t = "Object.assign"
+  external unsafeAddStyle: (@as(json`{}`) _, t, {..}) => t = "Object.assign"
 
-  external unsafeStyle: Js.t<'a> => t = "%identity"
+  external unsafeStyle: {..} => t = "%identity"
 
   external s: style => t = "%identity"
   let empty: t = s({})
@@ -374,7 +374,7 @@ module View = {
 module Text = {
   type t
   type style = {
-    ...BaseView.style,
+    ...View.style,
     ...textCoreStyle,
   }
   external array: array<t> => t = "%identity"
@@ -383,9 +383,9 @@ module Text = {
   // Useful if you play with fancy platforms
   // Use with caution
   @val
-  external unsafeAddStyle: (@as(json`{}`) _, t, Js.t<'a>) => t = "Object.assign"
+  external unsafeAddStyle: (@as(json`{}`) _, t, {..}) => t = "Object.assign"
 
-  external unsafeStyle: Js.t<'a> => t = "%identity"
+  external unsafeStyle: {..} => t = "%identity"
 
   external s: style => t = "%identity"
   let empty: t = s({})
@@ -396,7 +396,7 @@ module Image = {
     ...flexStyle,
     ...shadowIOSStyle,
     ...transformStyle,
-    ...imageCoreStyle
+    ...imageCoreStyle,
   }
   external array: array<t> => t = "%identity"
   external arrayOption: array<option<t>> => t = "%identity"
@@ -404,9 +404,9 @@ module Image = {
   // Useful if you play with fancy platforms
   // Use with caution
   @val
-  external unsafeAddStyle: (@as(json`{}`) _, t, Js.t<'a>) => t = "Object.assign"
+  external unsafeAddStyle: (@as(json`{}`) _, t, {..}) => t = "Object.assign"
 
-  external unsafeStyle: Js.t<'a> => t = "%identity"
+  external unsafeStyle: {..} => t = "%identity"
 
   external s: style => t = "%identity"
   let empty: t = s({})

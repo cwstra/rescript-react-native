@@ -6,7 +6,7 @@ external absoluteFill: Style.View.t = "absoluteFill"
 external absoluteFillObject: Style.View.style = "absoluteFillObject"
 
 @module("react-native") @scope("StyleSheet")
-external create: Js.t<'a> => Js.t<'a> = "create"
+external create: ({..} as 'a) => ({..} as 'a) = "create"
 @module("react-native") @scope("StyleSheet")
 external flattenView: array<Style.View.t> => Style.View.t = "flatten"
 @module("react-native") @scope("StyleSheet")

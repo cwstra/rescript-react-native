@@ -31,7 +31,7 @@ type transform
 @obj external skewY: (~skewY: angle) => transform = ""
 // @todo matrix
 
-external unsafeTransform: Js.t<'a> => transform = "%identity"
+external unsafeTransform: {..} => transform = "%identity"
 
 @unboxed
 type transformOriginX =
@@ -189,7 +189,6 @@ type verticalAlign =
   | @as("auto") Auto | @as("top") Top | @as("bottom") Bottom | @as("middle") Middle
 
 type borderCurve = | @as("circular") Circular | @as("continuous") Continuous
-
 
 // Styles are documented here
 // https://github.com/facebook/react-native/blob/main/packages/react-native/Libraries/StyleSheet/StyleSheetTypes.d.ts
@@ -361,12 +360,9 @@ module View: {
   }
   let array: array<t> => t
   let arrayOption: array<option<t>> => t
-  // Escape hatch, in case something is added into RN but unsupported,
-  // Useful if you play with fancy platforms
-  // Use with caution
-  let unsafeAddStyle: (t, Js.t<'a>) => t
-
-  let unsafeStyle: Js.t<'a> => t
+  @val
+  external unsafeAddStyle: (@as(json`{}`) _, t, {..}) => t = "Object.assign"
+  external unsafeStyle: {..} => t = "%identity"
 
   let s: style => t
   let empty: t
@@ -374,17 +370,14 @@ module View: {
 module Text: {
   type t
   type style = {
-    ...BaseView.style,
+    ...View.style,
     ...textCoreStyle,
   }
   let array: array<t> => t
   let arrayOption: array<option<t>> => t
-  // Escape hatch, in case something is added into RN but unsupported,
-  // Useful if you play with fancy platforms
-  // Use with caution
-  let unsafeAddStyle: (t, Js.t<'a>) => t
-
-  let unsafeStyle: Js.t<'a> => t
+  @val
+  external unsafeAddStyle: (@as(json`{}`) _, t, {..}) => t = "Object.assign"
+  external unsafeStyle: {..} => t = "%identity"
 
   let s: style => t
   let empty: t
@@ -395,16 +388,13 @@ module Image: {
     ...flexStyle,
     ...shadowIOSStyle,
     ...transformStyle,
-    ...imageCoreStyle
+    ...imageCoreStyle,
   }
   let array: array<t> => t
   let arrayOption: array<option<t>> => t
-  // Escape hatch, in case something is added into RN but unsupported,
-  // Useful if you play with fancy platforms
-  // Use with caution
-  let unsafeAddStyle: (t, Js.t<'a>) => t
-
-  let unsafeStyle: Js.t<'a> => t
+  @val
+  external unsafeAddStyle: (@as(json`{}`) _, t, {..}) => t = "Object.assign"
+  external unsafeStyle: {..} => t = "%identity"
 
   let s: style => t
   let empty: t

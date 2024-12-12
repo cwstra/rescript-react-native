@@ -5,10 +5,6 @@ module Make = (
 ) => {
   type scrollToEndOptions = {animated?: bool, duration?: float}
 
-  @deprecated("Directly create record instead") @obj
-  external scrollToEndOptions: (~animated: bool=?, ~duration: float=?, unit) => scrollToEndOptions =
-    ""
-
   // multiple externals
   @send external scrollToEnd: T.t => unit = "scrollToEnd"
 
@@ -20,5 +16,5 @@ module Make = (
   external flashScrollIndicators: T.t => unit = "flashScrollIndicators"
 
   @send
-  external setNativeProps: (T.t, Js.t<'a>) => unit = "setNativeProps"
+  external setNativeProps: (T.t, {..}) => unit = "setNativeProps"
 }
